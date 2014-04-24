@@ -14,6 +14,6 @@ Installation
 
 4) execute ``php app/console sw:load:fixtures``
 
-5) Done. at ``app_dev.php`` you have Hello Words and on ``app_dev.php/swimming-pools/`` you have the json output
+5) Done. at ``app_dev.php`` you have Hello World ! and on ``app_dev.php/swimming-pools/`` you have the json output
 of swimming pools.
 
