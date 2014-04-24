@@ -1,0 +1,7 @@
+parameters:
+#    sw_swimming_rest.example.class: Sw\Bundle\SwimmingRestBundle\Example
+
+services:
+#    sw_swimming_rest.example:
+#        class: %sw_swimming_rest.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

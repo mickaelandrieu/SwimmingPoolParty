@@ -1,0 +1,7 @@
+parameters:
+#    sw_soap_comment.example.class: Sw\Bundle\SoapCommentBundle\Example
+
+services:
+#    sw_soap_comment.example:
+#        class: %sw_soap_comment.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
