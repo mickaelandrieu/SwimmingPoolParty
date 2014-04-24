@@ -1,3 +1,0 @@
-sw_swimming_rest_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: SwSwimmingRestBundle:Default:index }

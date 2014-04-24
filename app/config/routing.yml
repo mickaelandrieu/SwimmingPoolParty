@@ -4,9 +4,9 @@ sw_application:
 
 sw_soap_comment:
     resource: "@SwSoapCommentBundle/Resources/config/routing.yml"
-    prefix:   /
+    prefix:   /comment/
 
-sw_swimming_rest:
-    resource: "@SwSwimmingRestBundle/Resources/config/routing.yml"
-    prefix:   /
+sw_rest_swimming:
+    resource: "@SwRestSwimmingBundle/Resources/config/routing.yml"
+    prefix:   /swimming/
 
