@@ -12,7 +12,7 @@ class LoadFixturesCommand extends ContainerAwareCommand
     protected function configure()
     {
         $this
-            ->setName('sw:load:fixtures')
+            ->setName('sw:load:fixtures-swimming')
             ->setDescription('Load all fixtures')
         ;
     }

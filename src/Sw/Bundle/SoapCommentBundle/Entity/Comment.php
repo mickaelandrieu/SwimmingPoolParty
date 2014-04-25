@@ -24,11 +24,18 @@ class Comment
     private $author;
 
     /**
-     * @var string $swimmingPoolId
+     * @var int $swimmingPoolId
      *
      * @ORM\Column(name="swimming_pool_id", type="integer")
      */
     private $swimmingPoolId;
+
+    /**
+     * @var int $rank
+     *
+     * @ORM\Column(name="rank", type="integer")
+     */
+    private $rank;
 
     public function getId()
     {
@@ -55,6 +62,18 @@ class Comment
     public function setSwimmingPoolId($swimmingPoolId)
     {
         $this->swimmingPoolId = $swimmingPoolId;
+
+        return $this;
+    }
+
+    public function getRank()
+    {
+        return $this->rank;
+    }
+
+    public function setRank($rank)
+    {
+        $this->rank = $rank;
 
         return $this;
     }
