@@ -19,7 +19,12 @@
         "sensio/framework-extra-bundle": "~3.0",
         "sensio/generator-bundle": "~2.3",
         "incenteev/composer-parameter-handler": "~2.0",
-        "fzaninotto/faker": "v1.3.0"
+        "fzaninotto/faker": "v1.3.0",
+        "besimple/soap-bundle": "dev-master",
+        "besimple/soap-common": "dev-master",
+        "ass/xmlsecurity":      "dev-master",
+        "besimple/soap-server": "dev-master",
+        "besimple/soap-client": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [

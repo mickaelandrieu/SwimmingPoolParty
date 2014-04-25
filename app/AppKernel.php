@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Sw\Bundle\RestSwimmingBundle\SwRestSwimmingBundle(),
             new Sw\Bundle\SoapCommentBundle\SwSoapCommentBundle(),
             new Sw\Bundle\ApplicationBundle\SwApplicationBundle(),
+            new BeSimple\SoapBundle\BeSimpleSoapBundle()
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
