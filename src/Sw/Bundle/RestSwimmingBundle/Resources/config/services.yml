@@ -1,7 +1,9 @@
 parameters:
 #    sw_swimming_rest.example.class: Sw\Bundle\SwimmingRestBundle\Example
+    sw_swimming_rest.swimming_pool.handler.class: Sw\Bundle\RestSwimmingBundle\Handler\SwimmingPoolHandler
+    sw_swimming_rest.swimming_pool.class: Sw\Bundle\RestSwimmingBundle\Entity\SwimmingPool
 
 services:
-#    sw_swimming_rest.example:
-#        class: %sw_swimming_rest.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    sw_swimming_rest.swimming_pool.handler:
+        class: %sw_swimming_rest.swimming_pool.handler.class%
+        arguments: [@doctrine.orm.entity_manager , %sw_swimming_rest.swimming_pool.class%]
