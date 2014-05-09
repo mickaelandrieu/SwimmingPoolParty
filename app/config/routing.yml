@@ -8,5 +8,5 @@ sw_soap_comment:
 
 sw_rest_swimming:
     type: rest
-    prefix: /api
+    prefix: /
     resource: "@SwRestSwimmingBundle/Resources/config/routing.yml"

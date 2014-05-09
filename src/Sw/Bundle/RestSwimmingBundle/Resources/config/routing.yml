@@ -1,5 +1,5 @@
 sw_rest_swimming_ressource:
     type: rest
-    prefix: /v1
+    prefix: /
     resource: "Sw\Bundle\RestSwimmingBundle\Controller\SwimmingPoolController"
     name_prefix:  api_1_ # naming collision

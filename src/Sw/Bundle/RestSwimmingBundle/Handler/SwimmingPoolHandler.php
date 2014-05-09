@@ -3,7 +3,7 @@ namespace Sw\Bundle\RestSwimmingBundle\Handler;
 
 class SwimmingPoolHandler
 {
-    // ..
+    
     public function __construct($om, $entityClass)
     {
         $this->om = $om;
@@ -11,9 +11,13 @@ class SwimmingPoolHandler
         $this->repository = $this->om->getRepository($this->entityClass);
     }
 
-    // ...
     public function get($id)
     {
         return $this->repository->find($id);
+    }
+
+    public function getAll()
+    {
+        return $this->repository->findAll();
     }
 }

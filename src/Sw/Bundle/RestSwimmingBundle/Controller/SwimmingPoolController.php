@@ -8,6 +8,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Util\Codes;
 use FOS\RestBundle\Controller\Annotations;
 use FOS\RestBundle\View\View;
+use FOS\RestBundle\Controller\Annotations\Route;
 use FOS\RestBundle\Request\ParamFetcherInterface;
 
 use Symfony\Component\Form\FormTypeInterface;
@@ -23,7 +24,7 @@ class SwimmingPoolController extends FOSRestController
      * 
      * @ApiDoc(
      *   resource = true,
-     *   description = "Gets a Page for a given id",
+     *   description = "Gets a swimming pool for a given id",
      *   output = "Sw\Bundle\RestSwimmingBundle\Entity\SwimmingPool",
      *   statusCodes = {
      *     200 = "Returned when successful",
@@ -31,14 +32,8 @@ class SwimmingPoolController extends FOSRestController
      *   }
      * )
      *
-     * 
-     *
      * @param Request $request the request object
-     * @param int     $id      the page id
-     *
      * @return array
-     *
-     *
      * @throws NotFoundHttpException when page not exist
      */
     public function getPoolAction($id)
@@ -47,50 +42,58 @@ class SwimmingPoolController extends FOSRestController
     }
 
     /**
-     * Fetch the Page or throw a 404 exception.
+     * Get single Page,
+     * @Annotations\View
+     * 
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get all swimming pool",
+     *   output = "Sw\Bundle\RestSwimmingBundle\Entity\SwimmingPool",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the page is not found"
+     *   }
+     * )
      *
-     * @param mixed $id
-     *
-     * @return PageInterface
-     *
-     * @throws NotFoundHttpException
+     * @param Request $request the request object
+     * @return array
+     * @throws NotFoundHttpException when page not exist
      */
-    protected function getOr404($id)
+    public function getPoolsAction()
     {
-        if (!($page = $this->container->get('sw_swimming_rest.swimming_pool.handler')->get($id))) {
-            throw new NotFoundHttpException(sprintf('The resource \'%s\' was not found.',$id));
-        }
-
-        return $page;
+        return $this->getAllOr404();
     }
 
     /**
-     * Create a new Page.
+     * Fetch the Page or throw a 404 exception.
      *
-     * @param array $parameters
-     *
+     * @param mixed $id
      * @return PageInterface
+     * @throws NotFoundHttpException
      */
-    public function post(array $parameters)
+    protected function getOr404()
     {
-        $page = $this->createPage(); // factory method create an empty Page
+        if (!($pool = $this->container->get('sw_swimming_rest.swimming_pool.handler')->get($id))) {
+            header('HTTP/1.0 404 Not Found');
+            exit;
+        }
 
-        // Process form does all the magic, validate and hydrate the Page Object.
-        return $this->processForm($page, $parameters, 'POST');
+        return $pool;
+    }
+
+    /**
+     * Fetch the Page or throw a 404 exception.
+     *
+     * @param mixed $id
+     * @return PageInterface
+     * @throws NotFoundHttpException
+     */
+    protected function getAllOr404()
+    {
+        if (!($pools = $this->container->get('sw_swimming_rest.swimming_pool.handler')->getAll())) {
+            header('HTTP/1.0 404 Not Found');
+            exit;
+        }            
+        return $pools;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

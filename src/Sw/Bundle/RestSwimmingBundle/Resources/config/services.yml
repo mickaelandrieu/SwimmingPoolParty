@@ -1,5 +1,4 @@
 parameters:
-#    sw_swimming_rest.example.class: Sw\Bundle\SwimmingRestBundle\Example
     sw_swimming_rest.swimming_pool.handler.class: Sw\Bundle\RestSwimmingBundle\Handler\SwimmingPoolHandler
     sw_swimming_rest.swimming_pool.class: Sw\Bundle\RestSwimmingBundle\Entity\SwimmingPool
 
