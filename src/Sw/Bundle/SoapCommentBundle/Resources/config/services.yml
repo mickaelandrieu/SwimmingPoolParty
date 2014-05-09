@@ -1,7 +1,7 @@
 parameters:
-#    sw_soap_comment.example.class: Sw\Bundle\SoapCommentBundle\Example
+    sw_soap_comment.manager.class: Sw\Bundle\SoapCommentBundle\Service\CommentManager
 
 services:
-#    sw_soap_comment.example:
-#        class: %sw_soap_comment.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    sw_soap_comment.manager:
+        class: %sw_soap_comment.manager.class%
+        arguments: [%kernel.root_dir%]

@@ -1,45 +1,45 @@
 <?php
 namespace Sw\Bundle\SoapCommentBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use BeSimple\SoapBundle\ServiceDefinition\Annotation as Soap;
 
-/**
- * @ORM\Entity
- * @ORM\Table(name="swimming_comment")
- */
 class Comment
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @Soap\ComplexType("int")
      */
     private $id;
 
     /**
-     * @var string $author
-     *
-     * @ORM\Column(name="author", type="string", length=255)
+     * @Soap\ComplexType("string")
      */
     private $author;
 
     /**
-     * @var int $swimmingPoolId
-     *
-     * @ORM\Column(name="swimming_pool_id", type="integer")
+     * @Soap\ComplexType("int", nillable=true)
      */
     private $swimmingPoolId;
 
     /**
-     * @var int $rank
-     *
-     * @ORM\Column(name="rank", type="integer")
+     * @Soap\ComplexType("int", nillable=true)
      */
     private $rank;
+
+    /**
+     * @Soap\ComplexType("string", nillable=true)
+     */
+    private $content;
 
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getAuthor()
@@ -74,6 +74,18 @@ class Comment
     public function setRank($rank)
     {
         $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function setContent($content)
+    {
+        $this->content = $content;
 
         return $this;
     }
