@@ -18,3 +18,8 @@ sw_application_swimmingpools_get_comment:
     pattern:  /swimming-pool/{swimmingPoolId}/comment
     defaults: { _controller: SwApplicationBundle:SoapClient:getComments, swimmingPoolId : 1 }
     #condition: "request.headers.get('X-Requested-With') == 'XmlHttpRequest'"
+
+sw_application_swimmingpools_goodbye:
+    pattern:  /swimming-pool/goodbye/{name}
+    defaults: { _controller: SwApplicationBundle:SoapClient:goodBye, name : "symfony" }
+    #condition: "request.headers.get('X-Requested-With') == 'XmlHttpRequest'"

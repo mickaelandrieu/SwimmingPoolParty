@@ -4,6 +4,7 @@ namespace Sw\Bundle\SoapCommentBundle\Controller;
 
 use BeSimple\SoapBundle\ServiceDefinition\Annotation as Soap;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sw\Bundle\SoapCommentBundle\Entity\Comment;
 
 class DefaultController extends Controller
 {
@@ -27,13 +28,31 @@ class DefaultController extends Controller
      */
     public function getComments($swimmingPoolId)
     {
-        return $this->get('sw_soap_comment.manager')->getComments($swimmingPoolId);
+        $comments = array();
+
+        $comment1 = new Comment();
+        $comment1->setId(1)
+            ->setAuthor('author1')
+        ;
+
+
+        $comment2 = new Comment();
+        $comment2->setId(2)
+            ->setAuthor('author2')
+        ;
+        $comments[] = $comment1;
+        $comments[] = $comment2;
+
+        return $comments;
     }
 
-    /*
+    /**
+     * @Soap\Method("goodBye")
+     * @Soap\Param("name", phpType = "string")
+     * @Soap\Result(phpType = "string")
+     */
     public function goodbyeAction($name)
     {
         return $this->container->get('besimple.soap.response')->setReturnValue(sprintf('Goodbye %s!', $name));
     }
-    */
 }
