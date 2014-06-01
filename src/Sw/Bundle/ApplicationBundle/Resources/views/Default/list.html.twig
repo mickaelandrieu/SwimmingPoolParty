@@ -1,0 +1,63 @@
+{% extends 'SwApplicationBundle::layout.html.twig' %}
+
+{% block content %}
+<p>Effectuez votre recherche :</p>
+<div class="row">
+    <form class="col-md-4">
+        <div class="input-group">
+          <input type="text" name="zipcode" placeholder="Entrez un code postal..." class="form-control" />
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="button">Go!</button>
+          </span>
+        </div><!-- /input-group -->
+    </form>
+</div>
+<hr />
+<div class="row">
+    <div id="searchresults" class="list-group col-md-5" style=""></div>
+    <div id="detail" class="col-md-7"></div>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+<script>
+$( document ).ready(function() {
+
+    /* START GLOBAL @todo : set in an other common js file*/
+    var loadergif = '<img src="{{asset('images/ajax-loader.gif')}}" alt="Loading..." style="display: block; margin: auto;" />'
+    function ajaxBridge(url, id, callback)
+    {
+        var block = $('#'+id);
+        block.empty().append(loadergif);
+        $.getJSON( url, function(data) {
+            block.empty();
+            callback(data);
+        })
+        .fail(function() {
+            block.empty().append('<div class="alert alert-danger"><p class="text-center">Une erreur est survenue !</p></div>')
+        });
+    }
+    /* END GLOBAL */
+
+    ajaxBridge("{{path('sw_application_swimmingpools_list')}}", "searchresults", function(data) {
+        $.each( data.swimmingpools, function( i, item ) {
+            $("#searchresults").append( '<a href="#" data-target="' + item.id + '" class="list-group-item itemsp"><h4 class="list-group-item-heading">' + item.name + '</h4><p class="list-group-item-text">' +  item.address + ' ' + item.zipCode + '</p></a>');
+        });
+    });
+
+    $("#searchresults").on('click', ".itemsp", function(e) {
+        e.preventDefault();
+        $(".itemsp").removeClass('active');
+        $(this).addClass('active');
+        //ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/"+$(this).attr("data-target"), "detail", function(data) {
+            $("#detail").empty().append('<h2>Piscine de Reuilly</h2>\
+                <p>Lorem ipsum dolor sit amet...</p>\
+                <div>66 boulevard du Montparnasse  75015</div>');
+       // });
+    });
+
+});
+</script>
+
+{% endblock %}
