@@ -13,6 +13,11 @@ class DefaultController extends Controller
         return $this->render('SwApplicationBundle:Default:index.html.twig');
     }
 
+    public function listAction()
+    {
+        return $this->render('SwApplicationBundle:Default:list.html.twig');
+    }
+
     /**
      * @deprecated This action should be removed when REST Service will be available
      *
@@ -22,11 +27,10 @@ class DefaultController extends Controller
     {
         $response = new JsonResponse();
 
-        $repository = $this->getDoctrine()
+        $swimmingpools = $this
+            ->getDoctrine()
             ->getRepository('SwRestSwimmingBundle:SwimmingPool')
-        ;
-
-        $swimmingpools = $repository->createQueryBuilder('s')
+            ->createQueryBuilder('s')
             ->getQuery()
             ->getArrayResult()
         ;
