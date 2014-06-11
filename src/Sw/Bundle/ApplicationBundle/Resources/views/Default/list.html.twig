@@ -50,11 +50,14 @@ $( document ).ready(function() {
         e.preventDefault();
         $(".itemsp").removeClass('active');
         $(this).addClass('active');
-        //ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/"+$(this).attr("data-target"), "detail", function(data) {
-            $("#detail").empty().append('<h2>Piscine de Reuilly</h2>\
-                <p>Lorem ipsum dolor sit amet...</p>\
-                <div>66 boulevard du Montparnasse  75015</div>');
-       // });
+        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/"+$(this).attr("data-target"), "detail", function(data) {
+            var swimmingpool = data.swimmingpool[0];
+
+            $("#detail").empty().append('<h2>'+swimmingpool.name+
+                '</h2>\n<p>'+swimmingpool.address+
+                '</p>\n<p>'+swimmingpool.zipCode+'</p>'
+            );
+        });
     });
 
 });
