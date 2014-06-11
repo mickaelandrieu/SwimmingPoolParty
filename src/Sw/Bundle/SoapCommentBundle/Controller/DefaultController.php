@@ -43,7 +43,7 @@ class DefaultController extends Controller
         $comments[] = $comment1;
         $comments[] = $comment2;
 
-        return $comments;
+        return $this->container->get('besimple.soap.response')->setReturnValue($comments);
     }
 
     /**

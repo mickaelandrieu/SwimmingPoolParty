@@ -17,7 +17,6 @@ class CommentManager
 
     public function addComment($swimmingPoolId, $author, $content, $rank)
     {
-
         return false;
     }
 
