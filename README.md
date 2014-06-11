@@ -16,6 +16,6 @@ Installation
 
 5) execute ``php app/console sw:load:fixtures-comments && php app/console sw:load:fixtures-swimming``
 
-5) Done. at ``app_dev.php`` you have Hello World ! and on ``app_dev.php/swimming-pools/`` you have the json output
+6) Done. at ``app_dev.php`` you have Hello World ! and on ``app_dev.php/swimming-pools/`` you have the json output
 of swimming pools.
 
