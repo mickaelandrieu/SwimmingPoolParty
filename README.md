@@ -10,7 +10,7 @@ Installation
 
 2) ``composer install``
 
-3) create swimmingpools database and edit ``app/parameters.yml`` file
+3) create swimmingpools database and edit ``app/config/parameters.yml`` file
 
 4) create the schema (captain' obvious) `` php app/console do:sc:up --force``
 
