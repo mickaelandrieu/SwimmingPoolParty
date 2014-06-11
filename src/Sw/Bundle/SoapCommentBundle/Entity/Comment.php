@@ -4,38 +4,35 @@ namespace Sw\Bundle\SoapCommentBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
- * @ORM\Table(name="swimming_comment")
+ * Comment entity, stored as an XML file
+ * This is bullshit, I know.
  */
 class Comment
 {
     /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @var int $id
      */
     private $id;
 
     /**
      * @var string $author
-     *
-     * @ORM\Column(name="author", type="string", length=255)
      */
     private $author;
 
     /**
      * @var int $swimmingPoolId
-     *
-     * @ORM\Column(name="swimming_pool_id", type="integer")
      */
     private $swimmingPoolId;
 
     /**
      * @var int $rank
-     *
-     * @ORM\Column(name="rank", type="integer")
      */
     private $rank;
+
+    /**
+     * @var text $content
+     */
+    private $content;
 
     public function getId()
     {
@@ -74,6 +71,18 @@ class Comment
     public function setRank($rank)
     {
         $this->rank = $rank;
+
+        return $this;
+    }
+
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    public function setContent($content)
+    {
+        $this->content = $content;
 
         return $this;
     }
