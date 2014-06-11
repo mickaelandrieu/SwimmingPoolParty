@@ -12,7 +12,9 @@ Installation
 
 3) create swimmingpools database and edit ``app/parameters.yml`` file
 
-4) execute ``php app/console sw:load:fixtures-comments``
+4) create the schema (captain' obvious) `` php app/console do:sc:up --force``
+
+5) execute ``php app/console sw:load:fixtures-comments``
 
 5) Done. at ``app_dev.php`` you have Hello World ! and on ``app_dev.php/swimming-pools/`` you have the json output
 of swimming pools.
