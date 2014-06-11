@@ -71,7 +71,7 @@ class SwimmingPoolController extends FOSRestController
      * @return PageInterface
      * @throws NotFoundHttpException
      */
-    protected function getOr404()
+    protected function getOr404($id)
     {
         if (!($pool = $this->container->get('sw_swimming_rest.swimming_pool.handler')->get($id))) {
             header('HTTP/1.0 404 Not Found');
