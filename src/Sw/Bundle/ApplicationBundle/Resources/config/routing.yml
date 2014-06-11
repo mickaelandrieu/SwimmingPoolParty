@@ -6,9 +6,17 @@ sw_application_list:
     pattern:  /piscines
     defaults: { _controller: SwApplicationBundle:Default:list }
 
+# Json API
 sw_application_swimmingpools_list:
-    pattern:  /swimming-pool/
+    pattern:  /swimming-pools
     defaults: { _controller: SwApplicationBundle:Default:getSwimmingPools }
+    requirements:
+        _method:  GET
+        _format:  json
+
+sw_application_swimmingpools_show:
+    pattern:  /swimming-pools/{id}
+    defaults: { _controller: SwApplicationBundle:Default:getSwimmingPool }
     requirements:
         _method:  GET
         _format:  json
