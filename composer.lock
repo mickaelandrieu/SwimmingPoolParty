@@ -4,8 +4,373 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4ce99880c81ac8db1e5ba0da9c3ed82a",
+    "hash": "1970b70e00d23863b138d4b447cf1fe9",
     "packages": [
+        {
+            "name": "ass/xmlsecurity",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aschamberger/XmlSecurity.git",
+                "reference": "a59318d0e307f79b850e7280f03cb27a1113cdb4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aschamberger/XmlSecurity/zipball/a59318d0e307f79b850e7280f03cb27a1113cdb4",
+                "reference": "a59318d0e307f79b850e7280f03cb27a1113cdb4",
+                "shasum": ""
+            },
+            "require": {
+                "ext-openssl": "*",
+                "lib-openssl": ">=0.9.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master"
+            },
+            "suggest": {
+                "ext-mcrypt": "*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "ass\\XmlSecurity": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Robert Richards",
+                    "email": "rrichards@cdatazone.org"
+                },
+                {
+                    "name": "Andreas Schamberger",
+                    "email": "mail@andreass.net"
+                }
+            ],
+            "description": "The XmlSecurity library is written in PHP for working with XML Encryption and Signatures",
+            "homepage": "https://github.com/aschamberger/XmlSecurity",
+            "keywords": [
+                "encryption",
+                "security",
+                "signature",
+                "xml"
+            ],
+            "time": "2014-04-03 21:37:04"
+        },
+        {
+            "name": "besimple/soap-bundle",
+            "version": "dev-master",
+            "target-dir": "BeSimple/SoapBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BeSimple/BeSimpleSoapBundle.git",
+                "reference": "067abf65bf6d163db5ce541861f2fad4e773bad9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BeSimple/BeSimpleSoapBundle/zipball/067abf65bf6d163db5ce541861f2fad4e773bad9",
+                "reference": "067abf65bf6d163db5ce541861f2fad4e773bad9",
+                "shasum": ""
+            },
+            "require": {
+                "ass/xmlsecurity": "~1.0",
+                "besimple/soap-common": "0.2.*",
+                "besimple/soap-wsdl": "0.2.*",
+                "ext-soap": "*",
+                "php": ">=5.3.0",
+                "symfony/framework-bundle": "~2.0",
+                "symfony/twig-bundle": "~2.0",
+                "zendframework/zend-mime": "2.1.*"
+            },
+            "suggest": {
+                "besimple/soap-client": "0.2.*",
+                "besimple/soap-server": "0.2.*"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "BeSimple\\SoapBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francis Besset",
+                    "email": "francis.besset@gmail.com",
+                    "homepage": "http://www.apercite.fr"
+                },
+                {
+                    "name": "Andreas Schamberger",
+                    "email": "mail@andreass.net"
+                },
+                {
+                    "name": "Christian Kerl",
+                    "email": "christian-kerl@web.de"
+                }
+            ],
+            "description": "Build and consume SOAP and WSDL based web services with Symfony2",
+            "homepage": "https://github.com/BeSimple/BeSimpleSoapBundle",
+            "keywords": [
+                "soap",
+                "soap-bundle"
+            ],
+            "time": "2014-04-30 08:54:07"
+        },
+        {
+            "name": "besimple/soap-client",
+            "version": "dev-master",
+            "target-dir": "BeSimple/SoapClient",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BeSimple/BeSimpleSoapClient.git",
+                "reference": "8367ecf8241c6a0c6f2c5fb3c468e9cb73283efd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BeSimple/BeSimpleSoapClient/zipball/8367ecf8241c6a0c6f2c5fb3c468e9cb73283efd",
+                "reference": "8367ecf8241c6a0c6f2c5fb3c468e9cb73283efd",
+                "shasum": ""
+            },
+            "require": {
+                "ass/xmlsecurity": "~1.0",
+                "besimple/soap-common": "0.2.*",
+                "ext-curl": "*",
+                "ext-soap": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "dev-master",
+                "symfony/filesystem": "~2.3",
+                "symfony/process": "~2.3"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "BeSimple\\SoapClient": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francis Besset",
+                    "email": "francis.besset@gmail.com",
+                    "homepage": "http://www.apercite.fr"
+                },
+                {
+                    "name": "Andreas Schamberger",
+                    "email": "mail@andreass.net"
+                },
+                {
+                    "name": "Christian Kerl",
+                    "email": "christian-kerl@web.de"
+                }
+            ],
+            "description": "Build and consume SOAP Client based web services",
+            "homepage": "https://github.com/BeSimple/BeSimpleSoapClient",
+            "keywords": [
+                "soap",
+                "soap-client"
+            ],
+            "time": "2014-04-25 09:16:34"
+        },
+        {
+            "name": "besimple/soap-common",
+            "version": "dev-master",
+            "target-dir": "BeSimple/SoapCommon",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BeSimple/BeSimpleSoapCommon.git",
+                "reference": "274f9bbb55222f799241be89d03a5536bda43c4e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BeSimple/BeSimpleSoapCommon/zipball/274f9bbb55222f799241be89d03a5536bda43c4e",
+                "reference": "274f9bbb55222f799241be89d03a5536bda43c4e",
+                "shasum": ""
+            },
+            "require": {
+                "ass/xmlsecurity": "~1.0",
+                "ext-soap": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "ext-mcrypt": "*",
+                "mikey179/vfsstream": "dev-master"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "BeSimple\\SoapCommon": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francis Besset",
+                    "email": "francis.besset@gmail.com",
+                    "homepage": "http://www.apercite.fr"
+                },
+                {
+                    "name": "Andreas Schamberger",
+                    "email": "mail@andreass.net"
+                },
+                {
+                    "name": "Christian Kerl",
+                    "email": "christian-kerl@web.de"
+                }
+            ],
+            "description": "Build and consume SOAP Common based web services",
+            "homepage": "https://github.com/BeSimple/BeSimpleSoapCommon",
+            "keywords": [
+                "soap",
+                "soap-common"
+            ],
+            "time": "2013-12-07 23:23:30"
+        },
+        {
+            "name": "besimple/soap-server",
+            "version": "dev-master",
+            "target-dir": "BeSimple/SoapServer",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BeSimple/BeSimpleSoapServer.git",
+                "reference": "75d4df7921b35774eeea07475b3ef5f771522a31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BeSimple/BeSimpleSoapServer/zipball/75d4df7921b35774eeea07475b3ef5f771522a31",
+                "reference": "75d4df7921b35774eeea07475b3ef5f771522a31",
+                "shasum": ""
+            },
+            "require": {
+                "ass/xmlsecurity": "~1.0",
+                "besimple/soap-common": "0.2.*",
+                "ext-soap": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "BeSimple\\SoapServer": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francis Besset",
+                    "email": "francis.besset@gmail.com",
+                    "homepage": "http://www.apercite.fr"
+                },
+                {
+                    "name": "Andreas Schamberger",
+                    "email": "mail@andreass.net"
+                },
+                {
+                    "name": "Christian Kerl",
+                    "email": "christian-kerl@web.de"
+                }
+            ],
+            "description": "Build and consume SOAP Server based web services",
+            "homepage": "https://github.com/BeSimple/BeSimpleSoapServer",
+            "keywords": [
+                "soap",
+                "soap-server"
+            ],
+            "time": "2013-12-02 15:02:29"
+        },
+        {
+            "name": "besimple/soap-wsdl",
+            "version": "v0.2.3",
+            "target-dir": "BeSimple/SoapWsdl",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/BeSimple/BeSimpleSoapWsdl.git",
+                "reference": "8a964e2c38a2afaa7bcb6c2be58d85b229c453f2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/BeSimple/BeSimpleSoapWsdl/zipball/8a964e2c38a2afaa7bcb6c2be58d85b229c453f2",
+                "reference": "8a964e2c38a2afaa7bcb6c2be58d85b229c453f2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "BeSimple\\SoapWsdl": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Francis Besset",
+                    "email": "francis.besset@gmail.com",
+                    "homepage": "http://www.apercite.fr"
+                },
+                {
+                    "name": "Christian Kerl",
+                    "email": "christian-kerl@web.de"
+                }
+            ],
+            "description": "Build and consume SOAP Common based web services",
+            "homepage": "https://github.com/BeSimple/BeSimpleSoapWsdl",
+            "keywords": [
+                "soap",
+                "soap-wsdl"
+            ],
+            "time": "2013-12-10 14:25:09"
+        },
         {
             "name": "doctrine/annotations",
             "version": "v1.1.2",
@@ -119,7 +484,7 @@
             ],
             "authors": [
                 {
-                    "name": "Jonathan Wage",
+                    "name": "Jonathan H. Wage",
                     "email": "jonwage@gmail.com",
                     "homepage": "http://www.jwage.com/",
                     "role": "Creator"
@@ -670,16 +1035,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.4.2",
+            "version": "v2.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "0363a5548d9263f979f9ca149decb9cfc66419ab"
+                "reference": "8a13376d42b5ea467727ffe730aa0e14ca3c5e29"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/0363a5548d9263f979f9ca149decb9cfc66419ab",
-                "reference": "0363a5548d9263f979f9ca149decb9cfc66419ab",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/8a13376d42b5ea467727ffe730aa0e14ca3c5e29",
+                "reference": "8a13376d42b5ea467727ffe730aa0e14ca3c5e29",
                 "shasum": ""
             },
             "require": {
@@ -742,7 +1107,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2014-02-08 16:35:09"
+            "time": "2014-06-10 11:49:08"
         },
         {
             "name": "friendsofsymfony/rest-bundle",
@@ -751,12 +1116,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfSymfony/FOSRestBundle.git",
-                "reference": "cc0931cfa5b9f75a15cd3b7ebc1b531a408cff1e"
+                "reference": "d37f4410e6a97e81c720840b56e35c3a44942723"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/cc0931cfa5b9f75a15cd3b7ebc1b531a408cff1e",
-                "reference": "cc0931cfa5b9f75a15cd3b7ebc1b531a408cff1e",
+                "url": "https://api.github.com/repos/FriendsOfSymfony/FOSRestBundle/zipball/d37f4410e6a97e81c720840b56e35c3a44942723",
+                "reference": "d37f4410e6a97e81c720840b56e35c3a44942723",
                 "shasum": ""
             },
             "require": {
@@ -821,7 +1186,7 @@
             "keywords": [
                 "rest"
             ],
-            "time": "2014-05-30 06:48:29"
+            "time": "2014-06-04 13:11:41"
         },
         {
             "name": "fzaninotto/faker",
@@ -1379,16 +1744,16 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "1.9.1",
+            "version": "1.10.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "65026b610f8c19e61d7242f600530677b0466aac"
+                "reference": "25b16e801979098cb2f120e697bfce454b18bf23"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/65026b610f8c19e61d7242f600530677b0466aac",
-                "reference": "65026b610f8c19e61d7242f600530677b0466aac",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/25b16e801979098cb2f120e697bfce454b18bf23",
+                "reference": "25b16e801979098cb2f120e697bfce454b18bf23",
                 "shasum": ""
             },
             "require": {
@@ -1416,7 +1781,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.9.x-dev"
+                    "dev-master": "1.10.x-dev"
                 }
             },
             "autoload": {
@@ -1443,7 +1808,7 @@
                 "logging",
                 "psr-3"
             ],
-            "time": "2014-04-24 13:29:03"
+            "time": "2014-06-04 16:30:04"
         },
         {
             "name": "nelmio/api-doc-bundle",
@@ -1452,12 +1817,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nelmio/NelmioApiDocBundle.git",
-                "reference": "dfb089f99385faee5dbe21aa150e6fac28f7d0b3"
+                "reference": "56124e7c409e80c486c291c624e0f048d2d0184d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/dfb089f99385faee5dbe21aa150e6fac28f7d0b3",
-                "reference": "dfb089f99385faee5dbe21aa150e6fac28f7d0b3",
+                "url": "https://api.github.com/repos/nelmio/NelmioApiDocBundle/zipball/56124e7c409e80c486c291c624e0f048d2d0184d",
+                "reference": "56124e7c409e80c486c291c624e0f048d2d0184d",
                 "shasum": ""
             },
             "require": {
@@ -1518,7 +1883,7 @@
                 "documentation",
                 "rest"
             ],
-            "time": "2014-05-26 08:51:28"
+            "time": "2014-06-01 13:56:45"
         },
         {
             "name": "phpcollection/phpcollection",
@@ -2180,16 +2545,16 @@
         },
         {
             "name": "swiftmailer/swiftmailer",
-            "version": "v5.2.0",
+            "version": "v5.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/swiftmailer/swiftmailer.git",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48"
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/043e336b871f17a117f76ef8e190eddfc04c8d48",
-                "reference": "043e336b871f17a117f76ef8e190eddfc04c8d48",
+                "url": "https://api.github.com/repos/swiftmailer/swiftmailer/zipball/2b9af56cc676c338d52fca4c657e5bdff73bb7af",
+                "reference": "2b9af56cc676c338d52fca4c657e5bdff73bb7af",
                 "shasum": ""
             },
             "require": {
@@ -2230,7 +2595,7 @@
                 "mail",
                 "mailer"
             ],
-            "time": "2014-05-08 08:11:19"
+            "time": "2014-06-13 11:44:54"
         },
         {
             "name": "symfony/assetic-bundle",
@@ -2344,21 +2709,21 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "v2.5.1",
+            "version": "v2.6.0",
             "target-dir": "Symfony/Bundle/MonologBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/MonologBundle.git",
-                "reference": "71ad844ac29401f86619f9d643393265451e858b"
+                "reference": "e1d4aa99c7440b11e9dfbfef7ed63084401dbc6a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/MonologBundle/zipball/71ad844ac29401f86619f9d643393265451e858b",
-                "reference": "71ad844ac29401f86619f9d643393265451e858b",
+                "url": "https://api.github.com/repos/symfony/MonologBundle/zipball/e1d4aa99c7440b11e9dfbfef7ed63084401dbc6a",
+                "reference": "e1d4aa99c7440b11e9dfbfef7ed63084401dbc6a",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "~1.6",
+                "monolog/monolog": "~1.8",
                 "php": ">=5.3.2",
                 "symfony/config": "~2.3",
                 "symfony/dependency-injection": "~2.3",
@@ -2372,7 +2737,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5.x-dev"
+                    "dev-master": "2.6.x-dev"
                 }
             },
             "autoload": {
@@ -2402,7 +2767,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2014-02-19 14:49:26"
+            "time": "2014-06-04 16:49:13"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -2463,16 +2828,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.4.5",
+            "version": "v2.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1"
+                "reference": "ebf1be8a9217eb5911102a522eb2bd500923297d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/885b6d17447fcc3cd9c42622321e5af4283dbde1",
-                "reference": "885b6d17447fcc3cd9c42622321e5af4283dbde1",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/ebf1be8a9217eb5911102a522eb2bd500923297d",
+                "reference": "ebf1be8a9217eb5911102a522eb2bd500923297d",
                 "shasum": ""
             },
             "require": {
@@ -2574,7 +2939,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-05-22 21:04:05"
+            "time": "2014-05-31 18:42:13"
         },
         {
             "name": "twig/extensions",
@@ -2714,7 +3079,7 @@
             ],
             "authors": [
                 {
-                    "name": "William DURAND",
+                    "name": "William Durand",
                     "email": "william.durand1@gmail.com",
                     "homepage": "http://www.willdurand.fr"
                 }
@@ -2771,6 +3136,91 @@
                 "negotiation"
             ],
             "time": "2014-05-16 12:34:51"
+        },
+        {
+            "name": "zendframework/zend-mime",
+            "version": "2.1.6",
+            "target-dir": "Zend/Mime",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendMime.git",
+                "reference": "35ae58792d036828122a168f2e3fc5bd9f3f38c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendMime/zipball/35ae58792d036828122a168f2e3fc5bd9f3f38c2",
+                "reference": "35ae58792d036828122a168f2e3fc5bd9f3f38c2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Mime\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "mime",
+                "zf2"
+            ],
+            "time": "2014-03-03 23:00:16"
+        },
+        {
+            "name": "zendframework/zend-stdlib",
+            "version": "2.1.6",
+            "target-dir": "Zend/Stdlib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendStdlib.git",
+                "reference": "e646729f2274f4552b6a92e38d8e458efe08ebc5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/e646729f2274f4552b6a92e38d8e458efe08ebc5",
+                "reference": "e646729f2274f4552b6a92e38d8e458efe08ebc5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-eventmanager": "To support aggregate hydrator usage",
+                "zendframework/zend-servicemanager": "To support hydrator plugin manager usage"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Stdlib\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "stdlib",
+                "zf2"
+            ],
+            "time": "2014-01-04 13:00:28"
         }
     ],
     "packages-dev": [
@@ -2785,7 +3235,12 @@
         "jms/serializer-bundle": 20,
         "nelmio/api-doc-bundle": 20,
         "doctrine/doctrine-fixtures-bundle": 20,
-        "liip/functional-test-bundle": 20
+        "liip/functional-test-bundle": 20,
+        "besimple/soap-bundle": 20,
+        "besimple/soap-common": 20,
+        "ass/xmlsecurity": 20,
+        "besimple/soap-server": 20,
+        "besimple/soap-client": 20
     },
     "platform": {
         "php": ">=5.3.3"

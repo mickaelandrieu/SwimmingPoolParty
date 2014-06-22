@@ -39,23 +39,6 @@
         </div>
     </div>
 
-<p>Effectuez votre recherche :</p>
-<div class="row">
-    <form class="col-md-4">
-        <div class="input-group">
-          <input type="text" name="zipcode" placeholder="Entrez un code postal..." class="form-control" />
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
-        </div><!-- /input-group -->
-    </form>
-</div>
-<hr />
-<div class="row">
-    <div id="searchresults" class="list-group col-md-5" style=""></div>
-    <div id="detail" class="col-md-7"></div>
-</div>
-
 {% endblock %}
 
 {% block javascripts %}
@@ -82,7 +65,7 @@ $( document ).ready(function() {
     var $formComment = $("#formComment");
     var $detail = $("#detail");
     var $infos = $("#infos");
-    var $map = $("#map");
+    //var $map = $("#map");
     var currentId = null;
 
     // @deprecated : to replace with the search url
@@ -192,20 +175,6 @@ $( document ).ready(function() {
           },
         });
 
-    });
-
-    $("#searchresults").on('click', ".itemsp", function(e) {
-        e.preventDefault();
-        $(".itemsp").removeClass('active');
-        $(this).addClass('active');
-        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/"+$(this).attr("data-target"), "detail", function(data) {
-            var swimmingpool = data.swimmingpool[0];
-
-            $("#detail").empty().append('<h2>'+swimmingpool.name+
-                '</h2>\n<p>'+swimmingpool.address+
-                '</p>\n<p>'+swimmingpool.zipCode+'</p>'
-            );
-        });
     });
 
 });
