@@ -10,9 +10,7 @@ class CommentManager
 
     public function __construct($rootDir)
     {
-        $doc = new \DOMDocument();
-        $doc->load($rootDir. 'data/comments.xml');
-        $this->xml = $doc;
+        $this->xml = simplexml_load_file($rootDir. '/data/comments.xml');
     }
 
     public function addComment($swimmingPoolId, $author, $content, $rank)
@@ -24,17 +22,19 @@ class CommentManager
     {
         $collection = array();
 
-        $xpath = new \DOMXPath($this->xml);
-        $query = "//comment[@swimmingPoolId='$swimmingPoolId']/";
+        $query = "/comments/comment[swimmingPoolId=".$swimmingPoolId."]";
 
-        $comments = $xpath->query($query);
+        // http://www.php.net/manual/fr/book.simplexml.php#105330
+        $comments = json_decode(json_encode($this->xml->xpath($query)), true);
 
         foreach ($comments as $comment) {
             $item = new Comment();
-            $item->setAuthor($comment->author->nodeValue)
-                ->setRank($comment->rank->nodeValue)
-                ->setContent($comment->content->nodeValue)
-                ->setSwimmingPoolId($comment->swimmingPoolId->nodeValue)
+            $item
+                ->setId(uniqid())
+                ->setRank($comment['rank'])
+                ->setAuthor($comment['author'])
+                ->setSwimmingPoolId($comment['swimmingPoolId'])
+                ->setContent($comment['content'])
             ;
             $collection[] = $item;
         }

@@ -11,7 +11,7 @@ class SoapClientController extends Controller
 {
     const WSDL = "http://localhost/SwimmingPoolParty/web/app_dev.php/ws/CommentApi";
 
-    public function getCommentsAction(Request $request)
+    public function getCommentsAction($swimmingPoolId)
     {
         try {
                 $client = new SoapClient(self::WSDL, array('cache_wsdl' => WSDL_CACHE_NONE,
@@ -22,7 +22,7 @@ class SoapClientController extends Controller
                     )
                 );
 
-                $params = array('swimmingPoolId' => 2919);
+                $params = array('swimmingPoolId' => $swimmingPoolId);
                 $response = $client->__soapCall('getComments', $params);
             } catch (\SoapFault $e) {
                 var_dump($e->getMessage(), $client->__getLastResponse());
@@ -33,17 +33,5 @@ class SoapClientController extends Controller
     public function addCommentAction(Request $request)
     {
         return new Response('addComment');
-    }
-
-    public function goodByeAction($name)
-    {
-        try {
-                $client = new SoapClient(self::WSDL, array('trace' => 1, 'soap_version'=>SOAP_1_2));
-                $params = array('name'=> $name);
-                $response = $client->__soapCall('goodBye', $params);
-            } catch (\SoapFault $e) {
-                var_dump($client,$e->getMessage(), $client->__getLastResponse()); die;
-        }
-        return new Response($response);
     }
 }

@@ -57,10 +57,12 @@ class LoadFixturesCommand extends ContainerAwareCommand
             $rank = $doc->createElement('rank', rand(1,5));
             $author = $doc->createElement('author', $faker->name());
             $swimmingPoolId = $doc->createElement('swimmingPoolId', $id);
+            $content = $doc->createElement('content', $faker->text);
 
             $rank = $comment->appendChild($rank);
             $author = $comment->appendChild($author);
             $swimmingPoolId = $comment->appendChild($swimmingPoolId);
+            $content = $comment->appendChild($content);
 
             $comment = $root->appendChild($comment);
         }
