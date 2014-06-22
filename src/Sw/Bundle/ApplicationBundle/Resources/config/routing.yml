@@ -6,6 +6,13 @@ sw_application_list:
     pattern:  /piscines
     defaults: { _controller: SwApplicationBundle:Default:list }
 
+# Comment
+sw_application_swimmingpools_comments_create:
+    pattern:  /comment/create
+    defaults: { _controller: SwApplicationBundle:Default:createComment }
+    requirements:
+        _method:  POST
+
 # Json API
 sw_application_swimmingpools_list:
     pattern:  /swimming-pools

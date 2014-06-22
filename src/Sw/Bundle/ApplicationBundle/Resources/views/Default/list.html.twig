@@ -1,21 +1,43 @@
 {% extends 'SwApplicationBundle::layout.html.twig' %}
 
 {% block content %}
-<p>Effectuez votre recherche :</p>
-<div class="row">
-    <form class="col-md-4">
-        <div class="input-group">
-          <input type="text" name="zipcode" placeholder="Entrez un code postal..." class="form-control" />
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="button">Go!</button>
-          </span>
-        </div><!-- /input-group -->
-    </form>
-</div>
-<hr />
+
 <div class="row">
     <div id="searchresults" class="list-group col-md-5" style=""></div>
-    <div id="detail" class="col-md-7"></div>
+    <div class="col-md-7">
+        <h2 id="sptitle"></h2>
+        <ul class="nav nav-tabs" style="margin-bottom:15px;">
+          <li class="active"><a href="#detail" data-toggle="tab">Informations</a></li>
+          <li><a href="#commentsTab" data-toggle="tab" id="btnComments">Commentaires</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="detail">
+            <div id="infos"></div>
+          </div>
+          <div id="commentsTab" class="tab-pane">
+            {{form_start(commentForm, { 'attr': {'class': 'form', 'role' : 'form', 'id' : 'formComment'}})}}
+                <div class="form-group">
+                    {{form_widget(commentForm.author, { 'attr': {'class': 'form-control', 'placeholder' : 'Pseudo'} })}}
+                </div>
+                <div class="form-group">
+                    {{form_widget(commentForm.content, { 'attr': {'class': 'form-control isEmpty', 'rows' : '2', 'data-msg' : 'Entrez votre commentaire...'}, 'value' : 'Entrez votre commentaire...' })}}
+                </div>
+                <div class="pull-left">
+                    <a href="#" class="note-star" id="note-star-1" data-note="1" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
+                    <a href="#" class="note-star" id="note-star-2" data-note="2" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
+                    <a href="#" class="note-star" id="note-star-3" data-note="3" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
+                    <a href="#" class="note-star" id="note-star-4" data-note="4" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star-empty"></span></a>
+                    <a href="#" class="note-star" id="note-star-5" data-note="5" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star-empty"></span></a>
+                </div>
+                <button type="submit" class="btn btn-success btn-small pull-right" ><span class="glyphicon glyphicon-envelope"></span> Envoyer</button>
+                <div style="clear:both;"></div>
+                {{form_end(commentForm)}}
+            </form>
+            <hr />
+            <div id="comments"></div>
+          </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}
@@ -40,24 +62,120 @@ $( document ).ready(function() {
     }
     /* END GLOBAL */
 
+    var $comments = $("#comments");
+    var $formComment = $("#formComment");
+    var $detail = $("#detail");
+    var $infos = $("#infos");
+    var $map = $("#map");
+    var currentId = null;
+
+    // @deprecated : to replace with the search url
     ajaxBridge("{{path('sw_application_swimmingpools_list')}}", "searchresults", function(data) {
         $.each( data.swimmingpools, function( i, item ) {
             $("#searchresults").append( '<a href="#" data-target="' + item.id + '" class="list-group-item itemsp"><h4 class="list-group-item-heading">' + item.name + '</h4><p class="list-group-item-text">' +  item.address + ' ' + item.zipCode + '</p></a>');
         });
     });
 
-    $("#searchresults").on('click', ".itemsp", function(e) {
+
+
+    // Onclick on an item of the list
+    $("#searchresults").on("click", ".itemsp", function(e) {
         e.preventDefault();
         $(".itemsp").removeClass('active');
         $(this).addClass('active');
-        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/"+$(this).attr("data-target"), "detail", function(data) {
+
+        currentId = $(this).attr("data-target");
+
+        $("#form_swimmingPoolId").val(currentId); // set the spID to the comment form
+
+        // Load the detail of the swimmingpool
+        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/" + currentId, "infos", function(data) {
             var swimmingpool = data.swimmingpool[0];
 
-            $("#detail").empty().append('<h2>'+swimmingpool.name+
-                '</h2>\n<p>'+swimmingpool.address+
-                '</p>\n<p>'+swimmingpool.zipCode+'</p>'
-            );
+            $("#sptitle").text(swimmingpool.name);
+            $infos.empty().append('<address>'+ swimmingpool.address + ' ' + swimmingpool.zipCode + '</address>');
+            $infos.append('<div id="map" style="height:250px;"></div>');
+
+            // create a map in the "map" div, set the view to a given place and zoom
+            var map = L.map('map').setView([swimmingpool.latitude, swimmingpool.longitude], 13);
+
+            // add an OpenStreetMap tile layer
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="http://osm.org/copyright">' + swimmingpool.name + '</a> contributors'
+            }).addTo(map);
+
+            // add a marker in the given location, attach some popup content to it and open the popup
+            L.marker([swimmingpool.latitude, swimmingpool.longitude]).addTo(map)
+                .bindPopup('<b>' + swimmingpool.name + '</b> ' + swimmingpool.address + ' ' +   swimmingpool.zipCode)
+                .openPopup();
+
         });
+    });
+
+    // Load the comments
+    $("#btnComments").click(function() {
+        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/" + currentId + "/comments", "comments", function(data) {
+            var content = '';
+            
+            $.each(data.comments, function(i, item) {
+    
+                content += '<b>' + item.author + '</b>&nbsp;&nbsp;';
+
+                for(var i=0; i<5; i++ )
+                    content += (i < item.rank) ? '<span class="glyphicon glyphicon-star"></span>' : '<span class="glyphicon glyphicon-star-empty"></span>';
+
+                content += '<p>' + item.content + '</p><hr />';
+            });
+
+            $comments.append(content);
+        });
+    });
+
+    /**
+     * Form comment
+     */
+
+    // textarea placeholder
+    $("textarea").focus(function() {
+        if ($(this).hasClass("isEmpty"))
+            $(this).empty().removeClass("isEmpty").val('');
+    });
+
+    $("textarea").blur(function() {
+        if ($.trim($(this).val()) == '')
+            $(this).empty().addClass("isEmpty").val($(this).attr('data-msg'));
+    });
+
+    //Note
+    $("a.note-star").click(function(e) {
+        e.preventDefault();
+        var note = $(this).attr("data-note");
+        $("#form_rank").val(note);
+        $("a.note-star span").removeClass().addClass('glyphicon glyphicon-star-empty');
+
+        for(var i=1; i<=note; i++ )
+            $("#note-star-" + i + " span").removeClass().addClass('glyphicon glyphicon-star');
+
+    });
+
+    // submit
+    $("#formComment").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: $(this).attr('action'),
+          data: $(this).serialize(),
+          success: function(data, textStatus, jqXHR) {
+            if (data.success) {
+                $formComment[0].reset();
+                $formComment.append('<div class="alert alert-success">Commentaire enregistré !</div>')
+            } else {
+                $formComment.append('<div class="alert alert-danger">Une erreur est survenue !</div>')
+            }
+            console.log(data);
+          },
+        });
+
     });
 
 });

@@ -4,7 +4,9 @@ namespace Sw\Bundle\ApplicationBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Faker\Factory;
+use Sw\Bundle\ApplicationBundle\Entity\Comment;
 
 class DefaultController extends Controller
 {
@@ -15,7 +17,40 @@ class DefaultController extends Controller
 
     public function listAction()
     {
-        return $this->render('SwApplicationBundle:Default:list.html.twig');
+        $comment = new Comment();
+        $form = $this->createCommentForm($comment);
+        return $this->render('SwApplicationBundle:Default:list.html.twig', array('commentForm' => $form->createView()));
+    }
+
+    public function createCommentAction(Request $request)
+    {
+        $response = new JsonResponse();
+        $comment = new Comment();
+        $form = $this->createCommentForm($comment);
+
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            //$form->getData()->
+            // fait quelque chose comme sauvegarder la tâche dans la bdd
+            //return $response->setData(array('newcomment' => $form->getData(), 'success' => true));
+        }
+
+        $response->setData(array('newcomment' => null, 'success' => false));
+    }
+
+    private function createCommentForm($comment)
+    {
+        $form = $this->createFormBuilder($comment)
+            ->setAction($this->generateUrl('sw_application_swimmingpools_comments_create'))
+            ->add('author', 'text')
+            ->add('content', 'textarea')
+            ->add('swimmingPoolId', 'hidden')
+            ->add('rank', 'hidden', array('data' => 3))
+            ->getForm()
+        ;
+
+        return $form;
     }
 
     /**
