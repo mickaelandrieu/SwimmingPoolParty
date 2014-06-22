@@ -4,9 +4,17 @@ sw_application:
 
 sw_soap_comment:
     resource: "@SwSoapCommentBundle/Resources/config/routing.yml"
-    prefix:   /comment/
+    prefix:   /soap/
 
 sw_rest_swimming:
     type: rest
     prefix: /
     resource: "@SwRestSwimmingBundle/Resources/config/routing.yml"
+
+NelmioApiDocBundle:
+    resource: "@NelmioApiDocBundle/Resources/config/routing.yml"
+    prefix:   /api/doc
+
+_besimple_soap:
+    resource: "@BeSimpleSoapBundle/Resources/config/routing/webservicecontroller.xml"
+    prefix:   /ws

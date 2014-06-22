@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class SwimmingPoolController extends FOSRestController
 {
     /**
-     * Get single Page,
+     * Gets a swimming pool for a given id
      * @Annotations\View
      * 
      * @ApiDoc(
@@ -42,7 +42,7 @@ class SwimmingPoolController extends FOSRestController
     }
 
     /**
-     * Get single Page,
+     * Get all swimming pool
      * @Annotations\View
      * 
      * @ApiDoc(
@@ -65,13 +65,39 @@ class SwimmingPoolController extends FOSRestController
     }
 
     /**
+     * Create a Page from the submitted data.
+     *
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Creates a new page from the submitted data.",
+     *   input = "Acme\BlogBundle\Form\PageType",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     400 = "Returned when the form has errors"
+     *   }
+     * )
+     *
+     * @Annotations\View
+     *
+     * @param Request $request the request object
+     *
+     * @return FormTypeInterface|View
+     */
+    public function postPoolsAction(Request $request)
+    {
+        $pool = $request->request->all();
+        $this->container->get('sw_swimming_rest.swimming_pool.handler')->post($pool);
+        header('HTTP/1.0 201 Created');
+        exit;
+    }
+    /**
      * Fetch the Page or throw a 404 exception.
      *
      * @param mixed $id
      * @return PageInterface
      * @throws NotFoundHttpException
      */
-    protected function getOr404()
+    protected function getOr404($id)
     {
         if (!($pool = $this->container->get('sw_swimming_rest.swimming_pool.handler')->get($id))) {
             header('HTTP/1.0 404 Not Found');

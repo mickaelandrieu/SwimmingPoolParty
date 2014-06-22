@@ -50,20 +50,24 @@ class LoadFixturesCommand extends ContainerAwareCommand
         $faker = Faker\Factory::create();
 
         $swimmingPoolIds = [2919,2920,2921,2923,2924,2925,2926,2927,2928,2929,2931,2932,2933,2934,2935,2937,2938,2939,2940,2942,2943,2944,2946,2947,3324,3325,4012,5041,1734];
+        $root = $doc->createElement('comments');
 
         foreach($swimmingPoolIds as $id) {
             $comment = $doc->createElement('comment');
             $rank = $doc->createElement('rank', rand(1,5));
             $author = $doc->createElement('author', $faker->name());
             $swimmingPoolId = $doc->createElement('swimmingPoolId', $id);
+            $content = $doc->createElement('content', $faker->text);
 
             $rank = $comment->appendChild($rank);
             $author = $comment->appendChild($author);
             $swimmingPoolId = $comment->appendChild($swimmingPoolId);
+            $content = $comment->appendChild($content);
 
-            $comment = $doc->appendChild($comment);
+            $comment = $root->appendChild($comment);
         }
 
+        $root = $doc->appendChild($root);
         return $doc;
     }
 }

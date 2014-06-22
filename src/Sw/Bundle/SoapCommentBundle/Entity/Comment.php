@@ -1,7 +1,8 @@
 <?php
 namespace Sw\Bundle\SoapCommentBundle\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
+use BeSimple\SoapBundle\ServiceDefinition\Annotation as Soap;
+
 
 /**
  * Comment entity, stored as an XML file
@@ -11,32 +12,44 @@ class Comment
 {
     /**
      * @var int $id
+     * @Soap\ComplexType("int")
      */
     private $id;
 
     /**
      * @var string $author
+     * @Soap\ComplexType("string")
      */
     private $author;
 
     /**
      * @var int $swimmingPoolId
+     * @Soap\ComplexType("int", nillable=true)
      */
     private $swimmingPoolId;
 
     /**
      * @var int $rank
+     * @Soap\ComplexType("int", nillable=true)
      */
     private $rank;
 
     /**
      * @var text $content
+     * @Soap\ComplexType("string", nillable=true)
      */
     private $content;
 
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
     }
 
     public function getAuthor()

@@ -73,8 +73,25 @@ sensio_framework_extra:
         annotations: false
 
 fos_rest:
+    body_listener: false
+    param_fetcher_listener: true
     view:
         view_response_listener: true
+        formats:
+            xml:  true
+            json: true
+        templating_formats:
+            html: false
     routing_loader:
         default_format:       xml
         include_format:       true
+    format_listener: true
+
+nelmio_api_doc: ~
+
+be_simple_soap:
+    services:
+        CommentApi:
+            namespace:     http://localhost/SwimmingPoolParty/ws/comment/1.2/
+            binding:       rpc-literal
+            resource:      "@SwSoapCommentBundle/Controller/DefaultController.php"
