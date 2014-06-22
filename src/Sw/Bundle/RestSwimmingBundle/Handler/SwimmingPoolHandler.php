@@ -1,5 +1,6 @@
 <?php
 namespace Sw\Bundle\RestSwimmingBundle\Handler;
+use Sw\Bundle\RestSwimmingBundle\Entity\SwimmingPool;
 
 class SwimmingPoolHandler
 {
@@ -19,5 +20,18 @@ class SwimmingPoolHandler
     public function getAll()
     {
         return $this->repository->findAll();
+    }
+    public function post($data)
+    {
+        $pool = new SwimmingPool();
+        $pool->setName($data["name"]);
+        $pool->setAddress($data["adress"]);
+        $pool->setZipCode($data["zipCode"]);
+        $pool->setLatitude($data["latitude"]);
+        $pool->setLongitude($data["longitude"]);
+        $this->om->persist($pool);
+        $this->om->flush($pool);
+
+        return $pool;
     }
 }
