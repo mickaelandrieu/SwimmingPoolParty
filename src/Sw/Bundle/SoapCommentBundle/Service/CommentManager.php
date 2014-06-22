@@ -7,15 +7,23 @@ use Sw\Bundle\SoapCommentBundle\Entity\Comment;
 class CommentManager
 {
     private $xml;
+    private $path;
 
     public function __construct($rootDir)
     {
+        $this->path = $rootDir. '/data/comments.xml';
         $this->xml = simplexml_load_file($rootDir. '/data/comments.xml');
     }
 
     public function addComment($swimmingPoolId, $author, $content, $rank)
     {
-        return false;
+        $comment = $this->xml->addChild('comment');
+        $comment->addChild('rank', (int) $rank);
+        $comment->addChild('author', $author);
+        $comment->addChild('swimmingPoolId', (int) $swimmingPoolId);
+        $comment->addChild('content', $content);
+
+        $this->xml->asXML($this->path);
     }
 
     public function getComments($swimmingPoolId)
