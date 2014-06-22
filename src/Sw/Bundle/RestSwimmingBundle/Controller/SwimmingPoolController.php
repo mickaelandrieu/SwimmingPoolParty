@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 class SwimmingPoolController extends FOSRestController
 {
     /**
-     * Get single Page,
+     * Gets a swimming pool for a given id
      * @Annotations\View
      * 
      * @ApiDoc(
@@ -42,7 +42,7 @@ class SwimmingPoolController extends FOSRestController
     }
 
     /**
-     * Get single Page,
+     * Get all swimming pool
      * @Annotations\View
      * 
      * @ApiDoc(
