@@ -22,7 +22,7 @@ class DefaultController extends Controller
         return $this->render('SwApplicationBundle:Default:list.html.twig', array('commentForm' => $form->createView()));
     }
 
-    public function createCommentAction(Request $request)
+    /*public function createCommentAction(Request $request)
     {
         $response = new JsonResponse();
         $comment = new Comment();
@@ -37,15 +37,15 @@ class DefaultController extends Controller
         }
 
         $response->setData(array('newcomment' => null, 'success' => false));
-    }
+    }*/
 
     private function createCommentForm($comment)
     {
         $form = $this->createFormBuilder($comment)
-            ->setAction($this->generateUrl('sw_application_swimmingpools_comments_create'))
+            ->setAction($this->generateUrl('sw_application_swimmingpools_add_comment'))
+            ->add('swimmingPoolId', 'hidden')
             ->add('author', 'text')
             ->add('content', 'textarea')
-            ->add('swimmingPoolId', 'hidden')
             ->add('rank', 'hidden', array('data' => 3))
             ->getForm()
         ;
