@@ -64,6 +64,30 @@ class SwimmingPoolController extends FOSRestController
         return $this->getAllOr404();
     }
 
+
+    /**
+     * Get all swimming pool by zipcode
+     * @Annotations\View
+     * 
+     * @ApiDoc(
+     *   resource = true,
+     *   description = "Get swimming pool by zipcode",
+     *   output = "Sw\Bundle\RestSwimmingBundle\Entity\SwimmingPool",
+     *   statusCodes = {
+     *     200 = "Returned when successful",
+     *     404 = "Returned when the page is not found"
+     *   }
+     * )
+     *
+     * @param Request $request the request object
+     * @return array
+     * @throws NotFoundHttpException when page not exist
+     */
+    public function getPoolsZipcodeAction($zipCode)
+    {
+        return $this->getByZipcodeOr404($zipCode);
+    }
+
     /**
      * Create a Page from the submitted data.
      *
@@ -117,6 +141,22 @@ class SwimmingPoolController extends FOSRestController
     protected function getAllOr404()
     {
         if (!($pools = $this->container->get('sw_swimming_rest.swimming_pool.handler')->getAll())) {
+            header('HTTP/1.0 404 Not Found');
+            exit;
+        }            
+        return $pools;
+    }
+
+    /**
+     * Fetch the Page or throw a 404 exception.
+     *
+     * @param mixed $zipCode
+     * @return PageInterface
+     * @throws NotFoundHttpException
+     */
+    protected function getByZipcodeOr404($zipCode)
+    {
+        if (!($pools = $this->container->get('sw_swimming_rest.swimming_pool.handler')->getByZipcode($zipCode))) {
             header('HTTP/1.0 404 Not Found');
             exit;
         }            

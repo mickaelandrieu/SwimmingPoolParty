@@ -3,39 +3,52 @@
 {% block content %}
 
 <div class="row">
-    <div id="searchresults" class="list-group col-md-5" style=""></div>
-    <div class="col-md-7">
-        <h2 id="sptitle"></h2>
-        <ul class="nav nav-tabs" style="margin-bottom:15px;">
-          <li class="active"><a href="#detail" data-toggle="tab">Informations</a></li>
-          <li><a href="#commentsTab" data-toggle="tab" id="btnComments">Commentaires</a></li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="detail">
-            <div id="infos"></div>
-          </div>
-          <div id="commentsTab" class="tab-pane">
-            {{form_start(commentForm, { 'attr': {'class': 'form', 'role' : 'form', 'id' : 'formComment'}})}}
-                <div class="form-group">
-                    {{form_widget(commentForm.author, { 'attr': {'class': 'form-control', 'placeholder' : 'Pseudo'} })}}
-                </div>
-                <div class="form-group">
-                    {{form_widget(commentForm.content, { 'attr': {'class': 'form-control isEmpty', 'rows' : '2', 'data-msg' : 'Entrez votre commentaire...'}, 'value' : 'Entrez votre commentaire...' })}}
-                </div>
-                <div class="pull-left">
-                    <a href="#" class="note-star" id="note-star-1" data-note="1" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
-                    <a href="#" class="note-star" id="note-star-2" data-note="2" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
-                    <a href="#" class="note-star" id="note-star-3" data-note="3" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
-                    <a href="#" class="note-star" id="note-star-4" data-note="4" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star-empty"></span></a>
-                    <a href="#" class="note-star" id="note-star-5" data-note="5" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star-empty"></span></a>
-                </div>
-                <button type="submit" class="btn btn-success btn-small pull-right" ><span class="glyphicon glyphicon-envelope"></span> Envoyer</button>
-                <div style="clear:both;"></div>
-                {{form_end(commentForm)}}
-            </form>
-            <hr />
-            <div id="comments"></div>
-          </div>
+    <div>
+        <form class="form-inline" id="form_search">
+            <div class="form-group">
+                <input type="search" class="form-control" placeholder="Entrez un code postal..." name="search" id="search_input" />
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Valider" />
+            </div>
+        </form>
+    </div>
+    <hr />
+    <div id="searchresults" class="list-group col-xs-5" style=""></div>
+    <div class="col-xs-7">
+        <div>
+            <h2 id="sptitle"></h2>
+            <ul class="nav nav-tabs" style="margin-bottom:15px;">
+              <li class="active"><a href="#detail" data-toggle="tab" id="info_click">Informations</a></li>
+              <li><a href="#commentsTab" data-toggle="tab" id="btnComments">Commentaires</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane active" id="detail">
+                <div id="infos"></div>
+              </div>
+              <div id="commentsTab" class="tab-pane">
+                {{form_start(commentForm, { 'attr': {'class': 'form', 'role' : 'form', 'id' : 'formComment'}})}}
+                    <div class="form-group">
+                        {{form_widget(commentForm.author, { 'attr': {'class': 'form-control', 'placeholder' : 'Pseudo'} })}}
+                    </div>
+                    <div class="form-group">
+                        {{form_widget(commentForm.content, { 'attr': {'class': 'form-control isEmpty', 'rows' : '2', 'data-msg' : 'Entrez votre commentaire...'}, 'value' : 'Entrez votre commentaire...' })}}
+                    </div>
+                    <div class="pull-left">
+                        <a href="#" class="note-star" id="note-star-1" data-note="1" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
+                        <a href="#" class="note-star" id="note-star-2" data-note="2" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
+                        <a href="#" class="note-star" id="note-star-3" data-note="3" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star"></span></a>
+                        <a href="#" class="note-star" id="note-star-4" data-note="4" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star-empty"></span></a>
+                        <a href="#" class="note-star" id="note-star-5" data-note="5" style="font-size:18px; color:#fcdc12;"><span class="glyphicon glyphicon-star-empty"></span></a>
+                    </div>
+                    <button type="submit" class="btn btn-success btn-small pull-right" ><span class="glyphicon glyphicon-envelope"></span> Envoyer</button>
+                    <div style="clear:both;"></div>
+                    {{form_end(commentForm)}}
+                </form>
+                <hr />
+                <div id="comments"></div>
+              </div>
+            </div>
         </div>
     </div>
 
@@ -45,16 +58,16 @@
 <script>
 $( document ).ready(function() {
 
-    /* START GLOBAL @todo : set in an other common js file*/
-    var loadergif = '<img src="{{asset('images/ajax-loader.gif')}}" alt="Loading..." style="display: block; margin: auto;" />'
+    var loadergif = '<img src="{{asset("images/ajax-loader.gif")}}" alt="Loading..." style="display: block; margin: auto;" />';
+
     function ajaxBridge(url, id, callback) {
         var block = $('#' + id);
         block.empty().append(loadergif);
-        $.get( url, function(data) {
+        $.get( url, function (data) {
             block.empty();
             callback(data);
         })
-        .fail(function() {
+        .fail(function () {
             block.empty().append('<div class="alert alert-danger"><p class="text-center">Une erreur est survenue !</p></div>')
         });
     }
@@ -64,12 +77,11 @@ $( document ).ready(function() {
         if ($(this).hasClass("isEmpty"))
             $(this).empty().removeClass("isEmpty").val('');
     });
+
     $("textarea").blur(function () {
         if ($.trim($(this).val()) == '')
             $(this).empty().addClass("isEmpty").val($(this).attr('data-msg'));
     });
-
-    /* END GLOBAL */
 
     var $comments = $("#comments"),
         $formComment = $("#formComment"),
@@ -89,13 +101,8 @@ $( document ).ready(function() {
 
         console.log(urlToDetail);
 
-    // @deprecated : to replace with the search url
-    ajaxBridge("{{path('sw_application_swimmingpools_list')}}", "searchresults", function (data) {
-        $.each(data, function(i, item) {
-            $("#searchresults").append( '<a href="#" data-target="' + item.id + '" class="list-group-item itemsp"><h4 class="list-group-item-heading">' + item.name + '</h4><p class="list-group-item-text">' +  item.address + ' ' + item.zip_code + '</p></a>');
-        });
-    });
-
+    // Show all
+    ajaxBridge("{{path('sw_application_swimmingpools_list')}}", "searchresults", function (data) {showList(data)});
 
 
     // Onclick on an item of the list
@@ -107,6 +114,8 @@ $( document ).ready(function() {
         currentId = $(this).attr("data-target");
 
         $("#form_swimmingPoolId").val(currentId); // set the spID to the comment form
+
+        $('#info_click').tab('show'); // Show info tab
 
         // Load the detail of the swimmingpool
         ajaxBridge(urlToDetail + currentId, "infos", function(data) {
@@ -126,7 +135,7 @@ $( document ).ready(function() {
 
             // add a marker in the given location, attach some popup content to it and open the popup
             L.marker([swimmingpool.latitude, swimmingpool.longitude]).addTo(map)
-                .bindPopup('<b>' + swimmingpool.name + '</b> ' + swimmingpool.address + ' ' +   swimmingpool.zipCode)
+                .bindPopup('<b>' + swimmingpool.name + '</b> ' + swimmingpool.address + ' ' +   swimmingpool.zip_code)
                 .openPopup();
 
         });
@@ -178,7 +187,10 @@ $( document ).ready(function() {
             url: $form.attr('action'),
             data: $form.serialize(),
             success: function (data, textStatus, jqXHR) {
-                $form.after('<div class="alert alert-success"><p class="text-center">Commentaire posté !</p></div>')
+                $form.after('<div class="alert alert-success"><p class="text-center">Commentaire posté !</p></div>');
+                $(".alert").delay(2000).fadeOut("slow", function() {
+                    $(this).remove();
+                });
 
                 // add comment to the list :
                 comment += '<b>' + author + '</b>&nbsp;&nbsp;';
@@ -190,6 +202,23 @@ $( document ).ready(function() {
             }
         });
     });
+
+    // Form search
+    $("#form_search").submit(function (e) {
+        e.preventDefault();
+        var $form = $(this),
+            search = $("#search_input").val();
+
+        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/zipcode/" + search, "searchresults", function (data) {showList(data)});
+    });
+
+    function showList(data) {
+        $.each(data, function(i, item) {
+            $("#searchresults").append( '<a href="#" data-target="' + item.id + '" class="list-group-item itemsp"><h4 class="list-group-item-heading">' + item.name + '</h4><p class="list-group-item-text">' +  item.address + ' ' + item.zip_code + '</p></a>');
+        });
+        $("#searchresults .list-group-item:first").click();
+    }
+
 });
 </script>
 

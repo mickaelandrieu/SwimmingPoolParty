@@ -9,11 +9,6 @@ use Sw\Bundle\ApplicationBundle\Entity\SwimmingPool;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
-    {
-        return $this->render('SwApplicationBundle:Default:index.html.twig');
-    }
-
     public function newAction()
     {
         $swimmingPool = new SwimmingPool();
@@ -46,12 +41,11 @@ class DefaultController extends Controller
     {
         $form = $this->createFormBuilder($swimmingPool)
             ->setAction($this->generateUrl('sw_application_swimmingpools_add'))
-            ->add('name', 'text')
-            ->add('address', 'text')
-            ->add('zipCode', 'text')
-            ->add('lat', 'text')
-            ->add('lon', 'text')
-            ->add('Valider', 'submit')
+            ->add('name', 'text', array('label' => 'Nom'))
+            ->add('address', 'text', array('label' => 'Adresse'))
+            ->add('zipCode', 'text', array('label' => 'Code postal'))
+            ->add('lat', 'text', array('label' => 'Latitude'))
+            ->add('lon', 'text', array('label' => 'Longitude'))
             ->getForm()
         ;
 

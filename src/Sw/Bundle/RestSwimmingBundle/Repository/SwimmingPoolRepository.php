@@ -6,9 +6,12 @@ use Doctrine\ORM\EntityRepository;
 
 class SwimmingPoolRepository extends EntityRepository
 {
-    public function findAll()
+    public function findByZipcode($zipCode)
     {
-    	$json = file_get_contents(__DIR__ . "/../Fixtures/piscines.json");
-        return $json;
+        $query = $this->createQueryBuilder('s')
+                      ->where('s.zipCode LIKE :zipcode')
+                      ->setParameter('zipcode', $zipCode.'%');
+
+        return $query->getQuery()->getResult();
     }
 }

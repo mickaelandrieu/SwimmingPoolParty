@@ -21,7 +21,12 @@ class SwimmingPoolHandler
     {
         return $this->repository->findAll();
     }
-    
+
+    public function getByZipcode($zipCode)
+    {
+        return $this->repository->findByZipcode($zipCode);
+    }
+
     public function post($data)
     {
         $pool = new SwimmingPool();
