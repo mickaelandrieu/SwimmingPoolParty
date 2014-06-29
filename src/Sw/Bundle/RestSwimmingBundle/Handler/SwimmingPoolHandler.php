@@ -21,11 +21,12 @@ class SwimmingPoolHandler
     {
         return $this->repository->findAll();
     }
+    
     public function post($data)
     {
         $pool = new SwimmingPool();
         $pool->setName($data["name"]);
-        $pool->setAddress($data["adress"]);
+        $pool->setAddress($data["address"]);
         $pool->setZipCode($data["zipCode"]);
         $pool->setLatitude($data["latitude"]);
         $pool->setLongitude($data["longitude"]);

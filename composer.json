@@ -30,7 +30,8 @@
         "besimple/soap-common": "dev-master",
         "ass/xmlsecurity":      "dev-master",
         "besimple/soap-server": "dev-master",
-        "besimple/soap-client": "dev-master"
+        "besimple/soap-client": "dev-master",
+        "misd/guzzle-bundle": "~1.0"
     },
     "scripts": {
         "post-install-cmd": [
