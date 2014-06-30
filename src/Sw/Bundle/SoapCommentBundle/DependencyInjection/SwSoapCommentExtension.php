@@ -21,6 +21,7 @@ class SwSoapCommentExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('sw_soap_comment.soap_entry_point', $config['soap_entry_point']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

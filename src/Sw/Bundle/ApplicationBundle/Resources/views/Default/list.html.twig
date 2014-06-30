@@ -143,7 +143,7 @@ $( document ).ready(function() {
 
     // Load the comments
     $("#btnComments").click(function() {
-        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pool/" + currentId + "/comment", "comments", function(data) {
+        ajaxBridge("{{ app.request.uri }}" + "swimming-pool/" + currentId + "/comment", "comments", function(data) {
             var comment = '';
             $(data).find('item').each( function () {
                 var $this = $(this),
@@ -209,7 +209,7 @@ $( document ).ready(function() {
         var $form = $(this),
             search = $("#search_input").val();
 
-        ajaxBridge("/SwimmingPoolParty/web/app_dev.php/swimming-pools/zipcode/" + search, "searchresults", function (data) {showList(data)});
+        ajaxBridge("{{ app.request.uri }}" + "swimming-pools/zipcode/" + search, "searchresults", function (data) {showList(data)});
     });
 
     function showList(data) {

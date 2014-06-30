@@ -11,7 +11,10 @@ use Sw\Bundle\ApplicationBundle\Entity\SwimmingPool;
 
 class RestClientController extends Controller
 {
-    const WSDL = "http://127.0.0.1";
+    public function getEntryPoint()
+    {
+        return $this->container->getParameter('sw_rest_swimming.rest_entry_point');
+    }
 
     /**
      *
@@ -22,8 +25,8 @@ class RestClientController extends Controller
         $response = new JsonResponse();
         $response->headers->set('Content-Type', 'application/json');
 
-        $client = new Client(self::WSDL);
-        $request = $client->get('/SwimmingPoolParty/web/app_dev.php/pools.json');
+        $client = new Client($this->getEntryPoint());
+        $request = $client->get('pools.json');
         $swimmingpools = $request->send();
         $swimmingpools = $swimmingpools->json();
 
@@ -40,8 +43,8 @@ class RestClientController extends Controller
         $response = new JsonResponse();
         $response->headers->set('Content-Type', 'application/json');
 
-        $client = new Client(self::WSDL);
-        $request = $client->get('/SwimmingPoolParty/web/app_dev.php/pools/' . intval($id) . '.json');
+        $client = new Client($this->getEntryPoint());
+        $request = $client->get('pools/' . intval($id) . '.json');
         $swimmingpools = $request->send();
         $swimmingpools = $swimmingpools->json();
 
@@ -58,8 +61,8 @@ class RestClientController extends Controller
         $response = new JsonResponse();
         $response->headers->set('Content-Type', 'application/json');
 
-        $client = new Client(self::WSDL);
-        $request = $client->get('/SwimmingPoolParty/web/app_dev.php/pools/' . $zipcode . '/zipcode.json');
+        $client = new Client($this->getEntryPoint());
+        $request = $client->get('pools/' . $zipcode . '/zipcode.json');
         $swimmingpools = $request->send();
         $swimmingpools = $swimmingpools->json();
 
@@ -92,8 +95,8 @@ class RestClientController extends Controller
                 'longitude' => $longitude,
             ];
 
-            $client = new Client(self::WSDL);
-            $request = $client->post('/SwimmingPoolParty/web/app_dev.php/pools.json');
+            $client = new Client($this->getEntryPoint());
+            $request = $client->post('/pools.json');
             $request->addPostFields($data);
             $response = $client->send($request);
 
