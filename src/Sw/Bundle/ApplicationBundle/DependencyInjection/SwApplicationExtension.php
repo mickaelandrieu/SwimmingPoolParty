@@ -21,6 +21,8 @@ class SwApplicationExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $container->setParameter('soap_entry_point', $config['soap_entry_point']);
+        $container->setParameter('rest_entry_point', $config['rest_entry_point']);
 
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');

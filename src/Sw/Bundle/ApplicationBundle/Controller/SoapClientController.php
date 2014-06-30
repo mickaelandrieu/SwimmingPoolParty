@@ -12,7 +12,7 @@ class SoapClientController extends Controller
 {
     public function getEntryPoint()
     {
-        return $this->container->getParameter('sw_soap_comment.soap_entry_point');
+        return $this->container->getParameter('soap_entry_point');
     }
 
     public function getCommentsAction($swimmingPoolId)

@@ -13,7 +13,7 @@ class RestClientController extends Controller
 {
     public function getEntryPoint()
     {
-        return $this->container->getParameter('sw_rest_swimming.rest_entry_point');
+        return $this->container->getParameter('rest_entry_point');
     }
 
     /**
