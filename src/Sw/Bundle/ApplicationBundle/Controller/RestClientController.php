@@ -88,6 +88,7 @@ class RestClientController extends Controller
             $latitude = $form['lat'];
             $longitude = $form['lon'];
             $data = [
+                'id'   => uniqid(),
                 'name' => $name,
                 'address' => $address,
                 'zipCode' => $zipCode,
@@ -96,7 +97,7 @@ class RestClientController extends Controller
             ];
 
             $client = new Client($this->getEntryPoint());
-            $request = $client->post('/pools.json');
+            $request = $client->post('pools.json');
             $request->addPostFields($data);
             $response = $client->send($request);
 
