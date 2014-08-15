@@ -20,7 +20,7 @@ class RestClientController extends Controller
      *
      * @return JsonResponse The Swimmingpool
      */
-	public function getSwimmingPoolsAction()
+    public function getSwimmingPoolsAction()
     {
         $response = new JsonResponse();
         $response->headers->set('Content-Type', 'application/json');
